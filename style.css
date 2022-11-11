@@ -1,25 +1,126 @@
-h1
-{
-    color: blue;
-    margin-bottom: 0;
-}
-div
-{
-    text-align: center;
-}
-img
-{
-    width: 30%;
-    margin-top: 50px;
-    padding: 50px;
-    border: 1px solid #ff0000;
-}
-ul > li
-{
-    margin-top: 5px;
+* {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
-table, td, th
-{
-    border: 1px solid;
+.pd {
+    padding: 0 48px;
 }
+
+.nav-bar {
+    background-color: #3D464D;
+    display: flex;
+    height: 65px;
+}
+
+.nav-bar .categories {
+    width: 33%;
+    padding: 0 15px;
+}
+
+.nav-bar .categories .main {
+    background-color: #FFD333;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.nav-bar .categories .main:hover {
+    background-color: #ffc800;
+    cursor: pointer;
+}
+
+.nav-bar .categories .main:hover + .list {
+    background-color: #FFFFFF;
+    display: block;
+    padding: 0;
+    width: 23.1%;
+}
+
+
+
+.nav-bar .categories .main:hover + .list > li {
+    border-bottom: 1px solid #F5F5F5;
+    padding: 8px 30px;
+    color: rgba(0, 0, 0, 0.5);
+    
+}
+
+.nav-bar .categories .main + .list:hover {
+    background-color: #FFFFFF;
+    display: block;
+    padding: 0;
+    width: 23.1%;
+}
+
+.nav-bar .categories .main + .list:hover > li {
+    border-bottom: 1px solid #F5F5F5;
+    padding: 8px 30px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.nav-bar .categories .main div > i {
+    margin-right: 5px;
+}
+
+.nav-bar .categories > .list{
+    list-style: none;
+    display: none;
+    position: absolute;
+}
+
+.nav-bar .main-header {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-between;
+    padding: 0 15px;
+    align-items: center;
+}
+
+.nav-bar .main-header div ul {
+    display: flex;
+    padding: 0;
+}
+
+.nav-bar .main-header div ul li {
+    list-style: none;
+    padding: 0 10px 0 10px;
+    color: #F5F5F5;
+}
+
+.nav-bar .main-header div ul li:hover {
+    list-style: none;
+    padding: 0 10px 0 10px;
+    color: #FFD333;
+    cursor: pointer;
+}
+
+.nav-bar .main-header div ul li:first-child {
+    color: #FFD333;
+}
+
+.nav-bar .main-header .cart {
+    display: flex;
+}
+
+.nav-bar .main-header .cart div i{
+    color: #FFD333;
+
+}
+
+.nav-bar .main-header .cart .cart-logo{
+    margin-left: 1rem;
+
+}
+
+.nav-bar .main-header .cart div span{
+    border: 1px solid #dee2e6;
+    border-radius: 50%;
+    padding: 1px 5px 1px 5px;
+    color: #F5F5F5;
+
+}
+
