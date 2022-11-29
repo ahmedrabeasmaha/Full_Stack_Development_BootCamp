@@ -1,9 +1,12 @@
 const subTotal = function () {
-    return products.map(function (product) {
-        return product.price * product.quantity;
-    }).reduce(function (acum, curr) {
-        return acum + curr;
-    });
+    if (products.length > 0) {
+        return products.map(function (product) {
+            return product.price * product.quantity;
+        }).reduce(function (acum, curr) {
+            return acum + curr;
+        });
+    }
+    return 0;
 };
 
 const shipping = function () {
