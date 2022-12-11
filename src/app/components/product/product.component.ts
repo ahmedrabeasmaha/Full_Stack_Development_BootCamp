@@ -13,7 +13,19 @@ export class ProductComponent implements OnInit {
   changeValue: boolean = false;
   constructor(private productService: ProductService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const product: string = this.product?.id!;
+    if (localStorage.getItem('lovedItems')) {
+      const items: string[] = JSON.parse(localStorage.getItem('lovedItems')!);
+      const idx: number = items.findIndex((item: string) => {
+        return item === product;
+      });
+      if (idx != -1) {
+        this.classValue = 'fa fa-heart';
+        this.changeValue = !this.changeValue;
+      }
+    }
+  }
 
   addToLove(loveItems: string) {
     if (loveItems) {

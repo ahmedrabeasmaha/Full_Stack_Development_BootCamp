@@ -9,7 +9,12 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductService {
   numOfLikes: number = 0;
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+    if (localStorage.getItem('lovedItems')) {
+      const items: string[] = JSON.parse(localStorage.getItem('lovedItems')!);
+      this.numOfLikes = items.length;
+    }
+  }
   getFeatured(): Observable<Object> {
     return this.httpClient.get(`${environment.apiUrl}products/getFeatured`);
   }
