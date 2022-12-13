@@ -2,12 +2,18 @@
   <div class="product-img position-relative overflow-hidden">
     <img class="img-fluid w-100" src="{{ product?.image }}" alt="" />
     <div class="product-action">
-      <a class="btn btn-outline-dark btn-square"
+      <a class="btn btn-outline-dark btn-square" (click)="addProductToCart()"
         ><i class="fa fa-shopping-cart"></i
       ></a>
       <a
         class="btn btn-outline-dark btn-square"
-        (click)="changeClass(changeValue)"
+        (click)="
+          classValue = productService.changeClass(
+            this.changeValue,
+            this.product!
+          );
+          changeValue = !changeValue
+        "
         ><i [class]="classValue"></i
       ></a>
       <a class="btn btn-outline-dark btn-square"

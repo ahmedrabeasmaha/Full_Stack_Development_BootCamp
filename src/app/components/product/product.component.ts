@@ -11,7 +11,7 @@ export class ProductComponent implements OnInit {
   @Input() product?: Product;
   classValue: string = 'far fa-heart';
   changeValue: boolean = false;
-  constructor(private productService: ProductService) {}
+  constructor(public productService: ProductService) {}
 
   ngOnInit(): void {
     const product: string = this.product?.id!;
@@ -26,26 +26,7 @@ export class ProductComponent implements OnInit {
       }
     }
   }
-
-  addToLove(loveItems: string) {
-    if (loveItems) {
-      const items: string[] = JSON.parse(loveItems);
-      items.push(this.product?.id!);
-      localStorage.setItem('lovedItems', JSON.stringify(items));
-    } else {
-      localStorage.setItem('lovedItems', JSON.stringify([this.product?.id]));
-    }
-  }
-
-  changeClass(changeValue: boolean): void {
-    if (changeValue) {
-      this.classValue = 'far fa-heart';
-      this.changeValue = !changeValue;
-      this.productService.delFromLoved(this.product!);
-    } else {
-      this.productService.addToLoved(this.product!);
-      this.classValue = 'fa fa-heart';
-      this.changeValue = !changeValue;
-    }
+  addProductToCart() {
+    this.productService.addProducts(this.product!, 1);
   }
 }

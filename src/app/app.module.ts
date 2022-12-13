@@ -18,6 +18,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductComponent } from './components/product/product.component';
 import { StarsComponent } from './components/stars/stars.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,15 +35,16 @@ import { StarsComponent } from './components/stars/stars.component';
     ContactComponent,
     ProductsComponent,
     ProductComponent,
-    StarsComponent
+    StarsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
