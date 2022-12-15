@@ -1,6 +1,6 @@
 export interface Category {
-  _id: string;
-  name: string;
-  image: string;
-  productCount: number;
+    id?:string;
+    name?:string;
+    image?:string;
+    count?:number;
 }

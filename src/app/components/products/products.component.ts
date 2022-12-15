@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/interfaces/product';
-import { ProductService } from 'src/app/services/product.service';
+import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
   selector: 'app-products',
@@ -8,18 +8,30 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
-  @Input() title: string = '';
-  @Input() type: string = '';
-
-  products: Product[] = [];
+  @Input() type?: string;
+  @Input() title?: string;
+  products?: Product[];
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
     const getProducts = (data: any) => {
-      this.products = data.data;
+      this.products = data.data.map((data: any) => {
+        return {
+          id: data._id,
+          name: data.name,
+          image: data.image,
+          descr: data.description,
+          price: data.price,
+          discount: data.discount,
+          rating: data.rating,
+          ratingCount: data.rating_count,
+        } as Product;
+      });
     };
-    if (this.type == 'featured')
-      this.productService.getFeaturedProducts().subscribe(getProducts);
-    else this.productService.getRecentProducts().subscribe(getProducts);
+    if (this.type == 'featured') {
+      this.productService.getFeatured().subscribe(getProducts);
+    } else {
+      this.productService.getRecent().subscribe(getProducts);
+    }
   }
 }

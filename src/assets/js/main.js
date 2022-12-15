@@ -32,8 +32,34 @@
         return false;
     });
 
+    
+    // Product Quantity
+    $('.quantity button').on('click', function () {
+        var button = $(this);
+        var oldValue = button.parent().parent().find('input').val();
+        if (button.hasClass('btn-plus')) {
+            var newVal = parseFloat(oldValue) + 1;
+        } else {
+            if (oldValue > 0) {
+                var newVal = parseFloat(oldValue) - 1;
+            } else {
+                newVal = 0;
+            }
+        }
+        button.parent().parent().find('input').val(newVal);
+    });
 
-    // Vendor carousel
+    /* $(".quantityVal").change(function (e) {
+        console.log(this);
+        console.log(e.target.value);
+        if (!e.target.value || e.target.value < 1) {
+            $(this).siblings(".input-group-btn").children(".btn-minus").prop('disabled', true);
+        }
+    }); */
+    
+})(jQuery);
+
+const vendor_carousel = function () {
     $('.vendor-carousel').owlCarousel({
         loop: true,
         margin: 29,
@@ -58,9 +84,9 @@
             }
         }
     });
+}
 
-
-    // Related carousel
+const related_carousel = function () {
     $('.related-carousel').owlCarousel({
         loop: true,
         margin: 29,
@@ -82,23 +108,4 @@
             }
         }
     });
-
-
-    // Product Quantity
-    $('.quantity button').on('click', function () {
-        var button = $(this);
-        var oldValue = button.parent().parent().find('input').val();
-        if (button.hasClass('btn-plus')) {
-            var newVal = parseFloat(oldValue) + 1;
-        } else {
-            if (oldValue > 0) {
-                var newVal = parseFloat(oldValue) - 1;
-            } else {
-                newVal = 0;
-            }
-        }
-        button.parent().parent().find('input').val(newVal);
-    });
-    
-})(jQuery);
-
+}

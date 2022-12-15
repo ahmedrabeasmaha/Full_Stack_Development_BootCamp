@@ -1,4 +1,3 @@
-<!-- Topbar Start -->
 <div class="container-fluid">
   <div class="row bg-secondary py-1 px-xl-5">
     <div class="col-lg-6 d-none d-lg-block">
@@ -11,7 +10,7 @@
     </div>
     <div class="col-lg-6 text-center text-lg-right">
       <div class="d-inline-flex align-items-center">
-        <div class="btn-group" *ngIf="!authService.getIsAuthenticated()">
+        <div class="btn-group">
           <button
             type="button"
             class="btn btn-sm btn-light dropdown-toggle"
@@ -20,20 +19,8 @@
             My Account
           </button>
           <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" routerLink="/login">Sign in</a>
-            <a class="dropdown-item" routerLink="/register">Sign up</a>
-          </div>
-        </div>
-        <div class="btn-group" *ngIf="authService.getIsAuthenticated()">
-          <button
-            type="button"
-            class="btn btn-sm btn-light dropdown-toggle"
-            data-toggle="dropdown"
-          >
-            {{authService.getName()}}
-          </button>
-          <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" (click)="signOut()">Sign Out</a>
+            <button class="dropdown-item" type="button">Sign in</button>
+            <button class="dropdown-item" type="button">Sign up</button>
           </div>
         </div>
         <div class="btn-group mx-2">
@@ -116,9 +103,6 @@
     </div>
   </div>
 </div>
-<!-- Topbar End -->
-
-<!-- Navbar Start -->
 <div class="container-fluid bg-dark mb-30">
   <div class="row px-xl-5">
     <div class="col-lg-3 d-none d-lg-block">
@@ -183,8 +167,9 @@
         >
           <div class="navbar-nav mr-auto py-0">
             <a
-              [routerLink]="['home']"
+              [routerLink]="['/']"
               routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
               class="nav-item nav-link"
               >Home</a
             >
@@ -194,22 +179,38 @@
               class="nav-item nav-link"
               >Shop</a
             >
+            <a
+              [routerLink]="['detail']"
+              routerLinkActive="active"
+              class="nav-item nav-link"
+              >Shop Detail</a
+            >
             <div class="nav-item dropdown">
               <a
-                routerLink="pages"
-                href="#"
+                [ngClass]="{ active: child1.isActive || child2.isActive }"
                 class="nav-link dropdown-toggle"
                 data-toggle="dropdown"
-                routerLinkActive="active"
                 >Pages <i class="fa fa-angle-down mt-1"></i
               ></a>
               <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                <a routerLink="pages/cart" class="dropdown-item">Shopping Cart</a>
-                <a routerLink="checkout" class="dropdown-item">Checkout</a>
+                <a
+                  [routerLink]="['cart']"
+                  routerLinkActive="active"
+                  #child1="routerLinkActive"
+                  class="dropdown-item"
+                  >Shopping Cart</a
+                >
+                <a
+                  [routerLink]="['checkout']"
+                  routerLinkActive="active"
+                  #child2="routerLinkActive"
+                  class="dropdown-item"
+                  >Checkout</a
+                >
               </div>
             </div>
             <a
-              routerLink="contact"
+              [routerLink]="['contact']"
               routerLinkActive="active"
               class="nav-item nav-link"
               >Contact</a
@@ -221,7 +222,7 @@
               <span
                 class="badge text-secondary border border-secondary rounded-circle"
                 style="padding-bottom: 2px"
-                >0</span
+                >{{ productService.numOfLikes }}</span
               >
             </a>
             <a href="" class="btn px-0 ml-3">
@@ -229,7 +230,7 @@
               <span
                 class="badge text-secondary border border-secondary rounded-circle"
                 style="padding-bottom: 2px"
-                >{{ storageService.getQuantity() }}</span
+                >0</span
               >
             </a>
           </div>
@@ -238,4 +239,3 @@
     </div>
   </div>
 </div>
-<!-- Navbar End -->

@@ -1,20 +1,13 @@
-import { Component } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
-import { ProductService } from 'src/app/services/product.service';
-import { StorageService } from 'src/app/services/storage.service';
+import { Component, OnInit } from '@angular/core';
+import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent {
-  constructor(
-    public storageService: StorageService,
-    public authService: AuthService
-  ) {}
+export class HeaderComponent implements OnInit {
+  constructor(public productService: ProductService) {}
 
-  signOut(){
-    this.authService.signOut();
-  }
+  ngOnInit(): void {}
 }

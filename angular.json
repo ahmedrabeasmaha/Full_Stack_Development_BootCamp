@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "online-shop": {
+    "Multi-Shop": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,12 +13,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/online-shop",
+            "outputPath": "dist/multi-shop",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -33,8 +31,9 @@
             "scripts": [
               "src/assets/lib/easing/easing.min.js",
               "src/assets/lib/owlcarousel/owl.carousel.min.js",
-              "src/assets/js/main.js",
-              "src/assets/js/home.js"
+              "src/assets/mail/jqBootstrapValidation.min.js",
+              "src/assets/mail/contact.js",
+              "src/assets/js/main.js"
             ]
           },
           "configurations": {
@@ -49,6 +48,12 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
                   "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"
@@ -68,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "online-shop:build:production"
+              "browserTarget": "Multi-Shop:build:production"
             },
             "development": {
-              "browserTarget": "online-shop:build:development"
+              "browserTarget": "Multi-Shop:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,17 +84,16 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "online-shop:build"
+            "browserTarget": "Multi-Shop:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -104,6 +108,6 @@
     }
   },
   "cli": {
-    "analytics": "7e55d55e-759a-4eb6-a6cc-c43838942cc8"
+    "analytics": false
   }
 }

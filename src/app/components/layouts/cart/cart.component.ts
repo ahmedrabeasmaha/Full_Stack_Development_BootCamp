@@ -1,18 +1,15 @@
-import { Component } from '@angular/core';
-import { CartLineModule } from 'src/app/cart-line/cart-line.module';
-import { CartLine } from 'src/app/interfaces/cart-line';
-import { StorageService } from 'src/app/services/storage.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css'],
+  styleUrls: ['./cart.component.css']
 })
-export class CartComponent {
-  constructor(private storageService: StorageService) {
-    this.cartLines = storageService.getCartLines();
-  }
-  cartLines: CartLine[] = [];
+export class CartComponent implements OnInit {
 
-  calculation: CartLineModule = new CartLineModule(this.cartLines);
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
 }
