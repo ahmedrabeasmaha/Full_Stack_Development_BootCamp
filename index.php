@@ -4,7 +4,6 @@ require_once('logic/products.php');
 require_once('logic/discount.php');
 require_once('logic/stars.php');
 $products = getProducts();
-$stars = [1, 2, 3, 4, 5];
 ?>
 
 
@@ -310,7 +309,7 @@ $stars = [1, 2, 3, 4, 5];
                     </div>
                     <div class="d-flex align-items-center justify-content-center mb-1">
                         <?php
-                foreach ($stars as $star) {
+                foreach (range(1, 5) as $star) {
                         ?>
                         <small class="<?= getStars($star, $product['ratig']) ?>"></small>
                         <?php
@@ -386,7 +385,7 @@ $stars = [1, 2, 3, 4, 5];
                     </div>
                     <div class="d-flex align-items-center justify-content-center mb-1">
                         <?php
-                foreach ($stars as $star) {
+                foreach (range(1, 5) as $star) {
                         ?>
                         <small class="<?= getStars($star, $product['ratig']) ?>"></small>
                         <?php
