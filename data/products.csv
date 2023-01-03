@@ -1,2 +1,2 @@
-1,product 1,img/product-1.jpg,100,0.1,2.5,0,50,1
-2,product 2,img/product-2.jpg,150,0.1,4.5,1,90,0
+1,Product 1,img/product-1.jpg,100,0.1,5,50,true,false
+2,Product 2,img/product-2.jpg,120,0.2,4.5,20,false,true
