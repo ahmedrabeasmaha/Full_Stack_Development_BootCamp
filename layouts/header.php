@@ -1,6 +1,5 @@
 <?php
-define('BASE_PATH', './');
-require_once('../logic/categories.php');
+require_once('./logic/categories.php');
 $categories = getCategories();
 ?>
 <!DOCTYPE html>
@@ -24,12 +23,11 @@ $categories = getCategories();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
 
     <!-- Libraries Stylesheet -->
-    <link href="/lib/animate/animate.min.css" rel="stylesheet" />
-    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="/css/style.css" rel="stylesheet" />
-    <link href="/css/lineicons.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -132,12 +130,10 @@ $categories = getCategories();
                     id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999">
                     <div class="navbar-nav w-100">
                         <?php
-                        foreach ($categories as $cat) {
-                            ?>
-                            <a href="<?='/shop.php?category_id=' . $cat['id'] ?>" class="nav-item nav-link">
-                                <?= $cat['name'] ?>
-                            </a>
-                            <?php
+                        foreach ($categories as  $cat) {
+                        ?>
+                        <a href="<?='/shop.php?category_id=' . $cat['id'] ?>" class="nav-item nav-link"><?= $cat['name'] ?></a>
+                        <?php
                         }
                         ?>
                     </div>
@@ -155,7 +151,7 @@ $categories = getCategories();
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
                             <a href="index.php" class="nav-item nav-link active">Home</a>
-                            <a href="shop.html" class="nav-item nav-link">Shop</a>
+                            <a href="shop.php" class="nav-item nav-link">Shop</a>
                             <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i

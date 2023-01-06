@@ -1,5 +1,5 @@
 <?php
-require_once(BASE_PATH . '../dal/dal.php');
+require_once(BASE_PATH.'dal/dal.php');
 function getCategories()
 {
     return get_rows("SELECT c.*,IFNULL(p.product_count,0) product_count FROM categories c 
