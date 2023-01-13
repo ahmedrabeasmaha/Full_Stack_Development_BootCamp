@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/admin', [AdminController::class, 'index']);
-Route::get('/admin/categories', [AdminController::class, 'category']);
+// $admin = Route::prefix('/admin');
+// $admin->group(function () {
+//     Route::get('', [AdminController::class, 'index'])->name('index');
+//     Route::get('/categories', [AdminController::class, 'category'])->name('categories');
+// });
+Route::prefix('admin')->group(
+    function () {
+        Route::get('', [AdminController::class, 'index'])->name('admin');
+    }
+);
+
+Route::resources(['categories' => CategoryController::class, 'products' => ProductController::class]);
