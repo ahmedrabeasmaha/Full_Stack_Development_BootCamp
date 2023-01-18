@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,15 +17,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// $admin = Route::prefix('/admin');
-// $admin->group(function () {
-//     Route::get('', [AdminController::class, 'index'])->name('index');
-//     Route::get('/categories', [AdminController::class, 'category'])->name('categories');
-// });
-Route::prefix('admin')->group(
-    function () {
-        Route::get('', [AdminController::class, 'index'])->name('admin');
-    }
-);
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/add-product', [HomeController::class, 'add_product']);
+Route::get('/shop', [HomeController::class, 'shop']);
+Route::get('/cart', [HomeController::class, 'cart']);
+Route::get('/inc-quantity', [HomeController::class, 'inc_quantity']);
+Route::get('/dec-quantity', [HomeController::class, 'dec_quantity']);
+Route::get('/del-product', [HomeController::class, 'del_product']);
 
-Route::resources(['categories' => CategoryController::class, 'products' => ProductController::class]);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__ . '/auth.php';
+
+Route::middleware(['auth', 'can:is_admin'])->prefix('/admin')->group(function () {
+    Route::resource('products', ProductsController::class);
+    Route::resource('categories', CategoriesController::class);
+});
